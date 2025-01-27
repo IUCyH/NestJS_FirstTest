@@ -17,7 +17,7 @@ export class UserService {
         return result;
     }
 
-    async createUser(user: CreateUserDto) {
+    async createUser(user: CreateUserDto): Promise<string | null> {
         const result = await this.repository
             .createQueryBuilder("user")
             .insert()

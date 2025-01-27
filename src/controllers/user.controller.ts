@@ -30,5 +30,7 @@ export class UserController {
         if(!result) {
             throw new HttpException("Create user failed", HttpStatus.NOT_MODIFIED);
         }
+
+        return result;
     }
 }
