@@ -1,10 +1,14 @@
 import {
     Controller,
     Get,
+    Post,
     Param,
-    NotFoundException
+    Body,
+    NotFoundException,
+    HttpException, HttpStatus
 } from "@nestjs/common";
 import { UserService } from "../services/user.service";
+import { CreateUserDto } from "../dto/user.dto.create";
 
 @Controller("users")
 export class UserController {
@@ -18,5 +22,13 @@ export class UserController {
         }
 
         return result;
+    }
+
+    @Post()
+    async createUser(@Body() user: CreateUserDto) {
+        const result = await this.service.createUser(user);
+        if(!result) {
+            throw new HttpException("Create user failed", HttpStatus.NOT_MODIFIED);
+        }
     }
 }
