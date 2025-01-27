@@ -2,13 +2,16 @@ import {
     Controller,
     Get,
     Post,
-    Param,
     Body,
     UsePipes,
+    UseGuards,
     ValidationPipe,
     NotFoundException,
     HttpException, HttpStatus
 } from "@nestjs/common";
+import { AccessTokenGuard } from "../guards/accessTokenGuard";
+import { CurrentUser } from "../customDecorators/currentUser";
+import { User } from "../types/user";
 import { UserService } from "../services/user.service";
 import { CreateUserDto } from "../dto/user.dto.create";
 
@@ -17,8 +20,9 @@ export class UserController {
     constructor(private readonly service: UserService) {}
 
     @Get(":id")
-    async getUserById(@Param("id") id: string) {
-        const result = await this.service.getUser(id);
+    @UseGuards(AccessTokenGuard)
+    async getUserById(@CurrentUser() user: User) {
+        const result = await this.service.getUser(user.uid);
         if(!result) {
             throw new NotFoundException("User not found");
         }
