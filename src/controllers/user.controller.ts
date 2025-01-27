@@ -4,6 +4,8 @@ import {
     Post,
     Param,
     Body,
+    UsePipes,
+    ValidationPipe,
     NotFoundException,
     HttpException, HttpStatus
 } from "@nestjs/common";
@@ -25,6 +27,7 @@ export class UserController {
     }
 
     @Post()
+    @UsePipes(new ValidationPipe({ transform: true }))
     async createUser(@Body() user: CreateUserDto) {
         const result = await this.service.createUser(user);
         if(!result) {
