@@ -7,7 +7,7 @@ export const AppDataSource: TypeOrmModuleOptions = {
     host: "localhost",
     port: 3306,
     username: "root",
-    password: "abc1234",
+    password: "bere6363",
     database: "nest_test",
     synchronize: false,
     logging: true,
