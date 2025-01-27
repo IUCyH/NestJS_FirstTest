@@ -16,7 +16,7 @@ export const AppDataSource: TypeOrmModuleOptions = {
         timezone: "Asia/Seoul",
         dateStrings: true
     },
-    entities: [__dirname + "../../dist/entities/**/*.js"],
+    entities: [__dirname + "/../entities/**/*.js"],
     subscribers: [],
     migrations: []
 };
