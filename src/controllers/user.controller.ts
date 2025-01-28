@@ -2,6 +2,7 @@ import {
     Controller,
     Get,
     Post,
+    Param,
     Body,
     UsePipes,
     UseGuards,
@@ -21,13 +22,23 @@ export class UserController {
 
     @Get("me")
     @UseGuards(AccessTokenGuard)
-    async getUserById(@CurrentUserDecorator() user: User) {
+    async getMyUser(@CurrentUserDecorator() user: User) {
         const result = await this.service.getUser(user.uid);
         if(!result) {
             throw new NotFoundException("User not found");
         }
 
         return { uid: result.uid, email: result.email, name: result.name };
+    }
+
+    @Get(":id")
+    async getUser(@Param("id") id: string) {
+        const result = await this.service.getUser(id);
+        if(!result) {
+            throw new NotFoundException("User not found");
+        }
+
+        return { uid: result.uid, name: result.name };
     }
 
     @Post()
