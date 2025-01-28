@@ -2,9 +2,15 @@ import { Module } from "@nestjs/common";
 import { AccessTokenGuard } from "../guards/access-token.guard";
 import { RefreshTokenGuard } from "../guards/refresh-token.guard";
 import { TokenHelperService } from "../helpers/token-helper.service";
+import { JwtModule } from "@nestjs/jwt";
 
 @Module({
-    imports: [],
+    imports: [
+        JwtModule.register({
+            secret: "Lg24_8TrFZ_wvKZ5N2Qj8J9VpXcTQoYmFqL1X9RYsMzlRmtvOaq6UHpQkE3VMTX",
+            signOptions: { issuer: "IUCyH", expiresIn: "30m" }
+        })
+    ],
     controllers: [],
     providers: [
         TokenHelperService,
@@ -12,6 +18,7 @@ import { TokenHelperService } from "../helpers/token-helper.service";
         RefreshTokenGuard
     ],
     exports: [
+        JwtModule,
         TokenHelperService,
         AccessTokenGuard,
         RefreshTokenGuard
