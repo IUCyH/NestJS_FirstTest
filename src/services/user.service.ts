@@ -22,11 +22,7 @@ export class UserService {
             return null;
         }
 
-        const result = new ResponseGetUserDto({
-            uid: user.uid,
-            name: user.name,
-            email: user.email
-        });
+        const result = new ResponseGetUserDto(user.uid, user.name, user.email);
         return result;
     }
 
@@ -40,11 +36,7 @@ export class UserService {
             return null;
         }
 
-        const result = new ResponseGetUserDto({
-            uid: user.uid,
-            name: user.name,
-            email: undefined
-        });
+        const result = new ResponseGetUserDto(user.uid, user.name);
         return result;
     }
 
