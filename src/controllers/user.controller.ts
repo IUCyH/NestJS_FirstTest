@@ -28,7 +28,7 @@ export class UserController {
             throw new NotFoundException("User not found");
         }
 
-        return { uid: result.uid, email: result.email, name: result.name };
+        return result;
     }
 
     @Get(":id")
@@ -38,7 +38,7 @@ export class UserController {
             throw new NotFoundException("User not found");
         }
 
-        return { uid: result.uid, name: result.name };
+        return result;
     }
 
     @Post()
@@ -49,6 +49,6 @@ export class UserController {
             throw new HttpException("Create user failed", HttpStatus.NOT_MODIFIED);
         }
 
-        return { uid: result };
+        return result;
     }
 }
