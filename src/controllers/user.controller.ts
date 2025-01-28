@@ -9,8 +9,8 @@ import {
     NotFoundException,
     HttpException, HttpStatus
 } from "@nestjs/common";
-import { AccessTokenGuard } from "../guards/accessTokenGuard";
-import { CurrentUser } from "../customDecorators/currentUser";
+import { AccessTokenGuard } from "../guards/access-token.guard";
+import { CurrentUserDecorator } from "../customDecorators/current-user.decorator";
 import { User } from "../types/user";
 import { UserService } from "../services/user.service";
 import { CreateUserDto } from "../dto/user.dto.create";
@@ -21,7 +21,7 @@ export class UserController {
 
     @Get(":id")
     @UseGuards(AccessTokenGuard)
-    async getUserById(@CurrentUser() user: User) {
+    async getUserById(@CurrentUserDecorator() user: User) {
         const result = await this.service.getUser(user.uid);
         if(!result) {
             throw new NotFoundException("User not found");

@@ -1,9 +1,9 @@
 import { Injectable, CanActivate, ExecutionContext, BadRequestException, UnauthorizedException } from "@nestjs/common";
-import { JwtService } from "@nestjs/jwt";
+import { TokenHelperService } from "../helpers/token-helper.service";
 
 @Injectable()
 export class AccessTokenGuard implements CanActivate {
-    constructor(private readonly jwtService: JwtService) {}
+    constructor(private readonly tokenHelperService: TokenHelperService) {}
 
     canActivate(context: ExecutionContext): boolean {
         const request = context.switchToHttp().getRequest();
@@ -18,25 +18,12 @@ export class AccessTokenGuard implements CanActivate {
             throw new BadRequestException({ message: "Token is required" });
         }
 
-        const decoded = this.verify(token);
+        const decoded = this.tokenHelperService.verify(token);
         if(!decoded || decoded.type !== "access") {
             throw new UnauthorizedException({ message: "Invalid token type" });
         }
 
         request.user = { uid: decoded.sub };
         return true;
-    }
-
-    private verify(token: string) {
-        try {
-            this.jwtService.verify(token, {
-                issuer: "IUCyH"
-            });
-
-            const decoded = this.jwtService.decode(token);
-            return decoded;
-        } catch {
-            return null;
-        }
     }
 }
