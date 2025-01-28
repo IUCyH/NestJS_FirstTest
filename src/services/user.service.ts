@@ -1,6 +1,5 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { plainToInstance } from "class-transformer";
 import { Repository } from "typeorm";
 import { User } from "../entities/user.entity";
 import { ResponseGetUserDto } from "../dto/user/response/response-get-user.dto";
@@ -19,8 +18,14 @@ export class UserService {
             select: ["uid", "name", "email"]
         });
 
-        const result = plainToInstance(ResponseGetUserDto, user, {
-            groups: ["includeEmail"]
+        if(user == null) {
+            return null;
+        }
+
+        const result = new ResponseGetUserDto({
+            uid: user.uid,
+            name: user.name,
+            email: user.email
         });
         return result;
     }
@@ -31,7 +36,15 @@ export class UserService {
             select: ["uid", "name"]
         });
 
-        const result = plainToInstance(ResponseGetUserDto, user);
+        if(user == null) {
+            return null;
+        }
+
+        const result = new ResponseGetUserDto({
+            uid: user.uid,
+            name: user.name,
+            email: undefined
+        });
         return result;
     }
 
@@ -47,7 +60,7 @@ export class UserService {
             return null;
         }
 
-        const result = plainToInstance(ResponseCreateUserDto, users.raw[0]);
+        const result = new ResponseCreateUserDto(users.raw[0].uid);
         return result;
     }
 }

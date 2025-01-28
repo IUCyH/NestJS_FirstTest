@@ -1,12 +1,11 @@
-import { Expose } from "class-transformer";
+import { User } from "../../../entities/user.entity";
 
 export class ResponseGetUserDto {
-    @Expose()
     uid: string = "";
-
-    @Expose()
     name: string = "";
+    email?: string = undefined;
 
-    @Expose({ groups: ["includeEmail"] })
-    email: string = "";
+    constructor(user: Partial<User>) {
+        Object.assign(this, user);
+    }
 }
