@@ -27,7 +27,7 @@ export class UserController {
             throw new NotFoundException("User not found");
         }
 
-        return result;
+        return { uid: result.uid, email: result.email, name: result.name };
     }
 
     @Post()
