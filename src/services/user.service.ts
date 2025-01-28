@@ -10,10 +10,18 @@ export class UserService {
                 private readonly repository: Repository<User>
     ) {}
 
-    async getUser(uid: string) {
+    async getUserWithEmail(uid: string) {
         const result = await this.repository.findOne({
             where: { uid: uid },
             select: ["uid", "name", "email"]
+        });
+        return result;
+    }
+
+    async getUserWithOutEmail(uid: string) {
+        const result = await this.repository.findOne({
+            where: { uid: uid },
+            select: ["uid", "name"]
         });
         return result;
     }

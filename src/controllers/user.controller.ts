@@ -23,7 +23,7 @@ export class UserController {
     @Get("me")
     @UseGuards(AccessTokenGuard)
     async getMyUser(@CurrentUserDecorator() user: User) {
-        const result = await this.service.getUser(user.uid);
+        const result = await this.service.getUserWithEmail(user.uid);
         if(!result) {
             throw new NotFoundException("User not found");
         }
@@ -33,7 +33,7 @@ export class UserController {
 
     @Get(":id")
     async getUser(@Param("id") id: string) {
-        const result = await this.service.getUser(id);
+        const result = await this.service.getUserWithOutEmail(id);
         if(!result) {
             throw new NotFoundException("User not found");
         }
