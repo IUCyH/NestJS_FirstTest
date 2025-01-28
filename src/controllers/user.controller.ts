@@ -13,7 +13,7 @@ import { AccessTokenGuard } from "../guards/access-token.guard";
 import { CurrentUserDecorator } from "../customDecorators/current-user.decorator";
 import { User } from "../types/user";
 import { UserService } from "../services/user.service";
-import { CreateUserDto } from "../dto/create-user.dto";
+import { CreateUserDTO } from "../dto/user/create-user.dto";
 
 @Controller("users")
 export class UserController {
@@ -32,7 +32,7 @@ export class UserController {
 
     @Post()
     @UsePipes(new ValidationPipe({ transform: true }))
-    async createUser(@Body() user: CreateUserDto) {
+    async createUser(@Body() user: CreateUserDTO) {
         const result = await this.service.createUser(user);
         if(!result) {
             throw new HttpException("Create user failed", HttpStatus.NOT_MODIFIED);
