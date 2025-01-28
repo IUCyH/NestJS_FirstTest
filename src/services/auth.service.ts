@@ -1,13 +1,14 @@
 import { Injectable } from "@nestjs/common";
-import { JwtService } from "@nestjs/jwt";
+import { TokenHelperService } from "../helpers/token-helper.service";
 import { TokenPayload } from "../types/tokenPayload";
 
 @Injectable()
 export class AuthService {
-    constructor(private readonly jwtService: JwtService) {}
+    constructor(private readonly tokenHelperService: TokenHelperService) {}
 
-    generateAccessToken(payload: TokenPayload) {
-        const token = this.jwtService.sign(payload);
+    generateAccessToken(sub: string) {
+        const payload: TokenPayload = { sub: sub, type: "access" };
+        const token = this.tokenHelperService.generate(payload);
         return token;
     }
 }

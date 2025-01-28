@@ -13,7 +13,7 @@ import { AccessTokenGuard } from "../guards/access-token.guard";
 import { CurrentUserDecorator } from "../customDecorators/current-user.decorator";
 import { User } from "../types/user";
 import { UserService } from "../services/user.service";
-import { CreateUserDto } from "../dto/user.dto.create";
+import { CreateUserDto } from "../dto/create-user.dto";
 
 @Controller("users")
 export class UserController {
