@@ -19,7 +19,7 @@ import { CreateUserDTO } from "../dto/user/create-user.dto";
 export class UserController {
     constructor(private readonly service: UserService) {}
 
-    @Get(":id")
+    @Get("me")
     @UseGuards(AccessTokenGuard)
     async getUserById(@CurrentUserDecorator() user: User) {
         const result = await this.service.getUser(user.uid);
