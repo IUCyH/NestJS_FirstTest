@@ -12,7 +12,8 @@ export class UserService {
 
     async getUser(uid: string) {
         const result = await this.repository.findOne({
-            where: { uid: uid }
+            where: { uid: uid },
+            select: ["uid", "name", "email"]
         });
         return result;
     }
