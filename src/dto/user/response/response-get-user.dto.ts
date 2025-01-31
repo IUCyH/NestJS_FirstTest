@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty } from "class-validator";
+import { IsEmail, IsNotEmpty, IsOptional } from "class-validator";
 
 export class ResponseGetUserDto {
     @IsNotEmpty()
@@ -7,6 +7,7 @@ export class ResponseGetUserDto {
     @IsNotEmpty()
     name: string = "";
 
+    @IsOptional()
     @IsEmail()
     email?: string = undefined;
 

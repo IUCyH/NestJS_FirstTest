@@ -18,7 +18,6 @@ import { ResponseDTOValidationInterceptor } from "../customInterceptors/response
 import { User } from "../types/user";
 import { UserService } from "../services/user.service";
 import { CreateUserDTO } from "../dto/user/create-user.dto";
-import { ResponseCreateUserDto } from "../dto/user/response/response-create-user.dto";
 
 @Controller("users")
 export class UserController {
@@ -56,6 +55,6 @@ export class UserController {
             throw new HttpException("Create user failed", HttpStatus.NOT_MODIFIED);
         }
 
-        return new ResponseCreateUserDto("");
+        return result;
     }
 }
