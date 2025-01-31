@@ -14,7 +14,7 @@ import {
 } from "@nestjs/common";
 import { AccessTokenGuard } from "../guards/access-token.guard";
 import { CurrentUser } from "../customDecorators/current-user.decorator";
-import { ResponseDTOValidationInterceptor } from "../customInterceptors/validateResponseDTO";
+import { ResponseDTOValidationInterceptor } from "../customInterceptors/response-validation.interceptor";
 import { User } from "../types/user";
 import { UserService } from "../services/user.service";
 import { CreateUserDTO } from "../dto/user/create-user.dto";
@@ -24,8 +24,9 @@ import { ResponseCreateUserDto } from "../dto/user/response/response-create-user
 export class UserController {
     constructor(private readonly service: UserService) {}
 
-    @Get("me")
     @UseGuards(AccessTokenGuard)
+    @UseInterceptors(ResponseDTOValidationInterceptor)
+    @Get("me")
     async getMyUser(@CurrentUser() user: User) {
         const result = await this.service.getUserWithEmail(user.uid);
         if(!result) {
@@ -35,6 +36,7 @@ export class UserController {
         return result;
     }
 
+    @UseInterceptors(ResponseDTOValidationInterceptor)
     @Get(":id")
     async getUser(@Param("id") id: string) {
         const result = await this.service.getUserWithOutEmail(id);
@@ -46,7 +48,7 @@ export class UserController {
     }
 
     @UsePipes(new ValidationPipe({ transform: true }))
-    @UseInterceptors(new ResponseDTOValidationInterceptor())
+    @UseInterceptors(ResponseDTOValidationInterceptor)
     @Post()
     async createUser(@Body() user: CreateUserDTO) {
         const result = await this.service.createUser(user);
@@ -54,6 +56,6 @@ export class UserController {
             throw new HttpException("Create user failed", HttpStatus.NOT_MODIFIED);
         }
 
-        return result;
+        return new ResponseCreateUserDto("");
     }
 }

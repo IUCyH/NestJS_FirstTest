@@ -10,8 +10,8 @@ import { Observable, from } from "rxjs";
 import { mergeMap } from "rxjs/operators";
 
 @Injectable()
-export class ResponseDTOValidationInterceptor<T extends Record<string, any>> implements NestInterceptor<T, T> {
-    intercept(context: ExecutionContext, next: CallHandler<T>): Observable<T> {
+export class ResponseDTOValidationInterceptor implements NestInterceptor {
+    intercept<T>(context: ExecutionContext, next: CallHandler<T>): Observable<T> {
         return next.handle().pipe(
             mergeMap((data) => from(this.validate(data)))
         );
