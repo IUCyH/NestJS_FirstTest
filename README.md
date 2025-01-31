@@ -1,5 +1,5 @@
 # NestJS_FirstTest
-```
+~~~
 │   ├── src
 │   │   ├── configs
 │   │   │   ├── orm.config.ts
@@ -8,8 +8,16 @@
 │   │   │   ├── user.controller.ts
 │   │   ├── customDecorators
 │   │   │   ├── current-user.decorator.ts
+│   │   ├── customInterceptors
+│   │   │   ├── response-validation.interceptor.ts
 │   │   ├── dto
-│   │   │   ├── create-user.dto.ts
+│   │   │   ├── auth
+│   │   │   │   ├── signin.dto.ts
+│   │   │   ├── user
+│   │   │   │   ├── create-user.dto.ts
+│   │   │   │   ├── response
+│   │   │   │   │   ├── response-create-user.dto.ts
+│   │   │   │   │   ├── response-get-user.dto.ts
 │   │   ├── entities
 │   │   │   ├── user.entity.ts
 │   │   ├── guards
@@ -34,7 +42,7 @@
 │   │   ├── app.service.ts
 │   │   ├── main.ts
 │   └── tsconfig.json
-```
+~~~
 
 ## AuthShared
 ### Providers
