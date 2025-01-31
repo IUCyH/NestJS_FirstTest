@@ -7,7 +7,7 @@ import {
     Body,
     NotFoundException
 } from "@nestjs/common";
-import { CurrentUserDecorator } from "../customDecorators/current-user.decorator";
+import { CurrentUser } from "../customDecorators/current-user.decorator";
 import { AuthService } from "../services/auth.service";
 import { RefreshTokenGuard } from "../guards/refresh-token.guard";
 import { SigninDTO } from "../dto/auth/signin.dto";
@@ -19,7 +19,7 @@ export class AuthController {
 
     @Post("access-token")
     @UseGuards(RefreshTokenGuard)
-    generateAccessToken(@CurrentUserDecorator() user: User) {
+    generateAccessToken(@CurrentUser() user: User) {
         const token = this.service.generateAccessToken(user.uid);
         return { access_token: token };
     }
