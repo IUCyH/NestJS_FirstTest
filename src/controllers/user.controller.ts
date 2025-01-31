@@ -54,6 +54,6 @@ export class UserController {
             throw new HttpException("Create user failed", HttpStatus.NOT_MODIFIED);
         }
 
-        return new ResponseCreateUserDto("");
+        return result;
     }
 }
