@@ -1,4 +1,4 @@
-import { ResponseDTOValidationInterceptor } from "../../src/customInterceptors/response-validation.interceptor";
+import { ResponseDTOValidationInterceptor } from "../../src/common/interceptors/response-validation.interceptor";
 import { CallHandler, ExecutionContext, InternalServerErrorException } from "@nestjs/common";
 import { of, lastValueFrom } from "rxjs";
 import { IsNotEmpty } from "class-validator";

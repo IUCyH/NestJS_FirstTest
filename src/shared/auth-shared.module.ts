@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
-import { AccessTokenGuard } from "../guards/access-token.guard";
-import { RefreshTokenGuard } from "../guards/refresh-token.guard";
-import { TokenHelperService } from "../helpers/token-helper.service";
+import { AccessTokenGuard } from "../common/guards/access-token.guard";
+import { RefreshTokenGuard } from "../common/guards/refresh-token.guard";
+import { TokenHelperService } from "../common/helpers/token-helper.service";
 import { JwtModule } from "@nestjs/jwt";
 
 @Module({

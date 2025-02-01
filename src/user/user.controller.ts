@@ -13,10 +13,10 @@ import {
     HttpException,
     HttpStatus
 } from "@nestjs/common";
-import { AccessTokenGuard } from "../guards/access-token.guard";
-import { CurrentUser } from "../customDecorators/current-user.decorator";
-import { ResponseDTOValidationInterceptor } from "../customInterceptors/response-validation.interceptor";
-import { User } from "../types/user";
+import { AccessTokenGuard } from "../common/guards/access-token.guard";
+import { CurrentUser } from "../common/decorators/current-user.decorator";
+import { ResponseDTOValidationInterceptor } from "../common/interceptors/response-validation.interceptor";
+import { User } from "../common/types/user";
 import { CreateUserDTO } from "./dto/create-user.dto";
 import { IUserService } from "./interfaces/user-service.interface";
 

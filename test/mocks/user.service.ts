@@ -1,7 +1,7 @@
 import { IUserService } from "../../src/user/interfaces/user-service.interface";
-import { ResponseGetUserDto } from "../../src/user/dto/response/response-get-user.dto";
+import { ResponseGetUserDto } from "../../src/user/dto/response-get-user.dto";
 import { CreateUserDTO } from "../../src/user/dto/create-user.dto";
-import { ResponseCreateUserDto } from "../../src/user/dto/response/response-create-user.dto";
+import { ResponseCreateUserDto } from "../../src/user/dto/response-create-user.dto";
 
 export class MockUserService implements IUserService {
     getUserWithEmail(uid: string): Promise<ResponseGetUserDto | null> {

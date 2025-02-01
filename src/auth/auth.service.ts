@@ -1,8 +1,8 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
-import { TokenHelperService } from "../helpers/token-helper.service";
-import { TokenPayload } from "../types/tokenPayload";
+import { TokenHelperService } from "../common/helpers/token-helper.service";
+import { TokenPayload } from "../common/types/tokenPayload";
 import { User } from "../user/entities/user.entity";
 
 @Injectable()
