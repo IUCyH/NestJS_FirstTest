@@ -5,9 +5,10 @@ import { User } from "../entities/user.entity";
 import { ResponseGetUserDto } from "../dto/user/response/response-get-user.dto";
 import { ResponseCreateUserDto } from "../dto/user/response/response-create-user.dto";
 import { CreateUserDTO } from "../dto/user/create-user.dto";
+import { IUserService } from "../interfaces/user-service.interface";
 
 @Injectable()
-export class UserService {
+export class UserService implements IUserService {
     constructor(@InjectRepository(User)
                 private readonly repository: Repository<User>
     ) {}
