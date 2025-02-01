@@ -1,5 +1,5 @@
-import { UserController } from "../../src/controllers/user.controller";
-import { MockUserService } from "../../mocks/user.service";
+import { UserController } from "../../src/user/user.controller";
+import { MockUserService } from "../mocks/user.service";
 
 describe("UserController", () => {
     let userController: UserController;

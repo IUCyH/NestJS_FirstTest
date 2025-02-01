@@ -17,8 +17,8 @@ import { AccessTokenGuard } from "../guards/access-token.guard";
 import { CurrentUser } from "../customDecorators/current-user.decorator";
 import { ResponseDTOValidationInterceptor } from "../customInterceptors/response-validation.interceptor";
 import { User } from "../types/user";
-import { CreateUserDTO } from "../dto/user/create-user.dto";
-import { IUserService } from "../interfaces/user-service.interface";
+import { CreateUserDTO } from "./dto/create-user.dto";
+import { IUserService } from "./interfaces/user-service.interface";
 
 @Controller("users")
 export class UserController {

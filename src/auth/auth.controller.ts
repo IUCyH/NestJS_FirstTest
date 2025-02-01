@@ -8,9 +8,9 @@ import {
     NotFoundException
 } from "@nestjs/common";
 import { CurrentUser } from "../customDecorators/current-user.decorator";
-import { AuthService } from "../services/auth.service";
+import { AuthService } from "./auth.service";
 import { RefreshTokenGuard } from "../guards/refresh-token.guard";
-import { SigninDTO } from "../dto/auth/signin.dto";
+import { SigninDTO } from "./dto/signin.dto";
 import { User } from "../types/user";
 
 @Controller("auth")

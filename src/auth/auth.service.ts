@@ -3,7 +3,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { TokenHelperService } from "../helpers/token-helper.service";
 import { TokenPayload } from "../types/tokenPayload";
-import { User } from "../entities/user.entity";
+import { User } from "../user/entities/user.entity";
 
 @Injectable()
 export class AuthService {
