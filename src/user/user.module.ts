@@ -4,6 +4,7 @@ import { AuthSharedModule } from "../shared/auth-shared.module";
 import { User } from "./entities/user.entity";
 import { UserController } from "./user.controller";
 import { UserService } from "./user.service";
+import { USER_SERVICE } from "./interfaces/user-service.interface";
 
 @Module({
     imports: [
@@ -13,7 +14,7 @@ import { UserService } from "./user.service";
     controllers: [UserController],
     providers: [
         {
-            provide: "IUserService",
+            provide: USER_SERVICE,
             useClass: UserService
         }
     ]

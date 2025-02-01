@@ -18,11 +18,11 @@ import { CurrentUser } from "../common/decorators/current-user.decorator";
 import { ResponseDTOValidationInterceptor } from "../common/interceptors/response-validation.interceptor";
 import { User } from "../common/types/user";
 import { CreateUserDTO } from "./dto/create-user.dto";
-import { IUserService } from "./interfaces/user-service.interface";
+import { IUserService, USER_SERVICE } from "./interfaces/user-service.interface";
 
 @Controller("users")
 export class UserController {
-    constructor(@Inject("IUserService") private readonly service: IUserService) {}
+    constructor(@Inject(USER_SERVICE) private readonly service: IUserService) {}
 
     @UseGuards(AccessTokenGuard)
     @UseInterceptors(ResponseDTOValidationInterceptor)
